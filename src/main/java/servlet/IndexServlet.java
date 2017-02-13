@@ -20,14 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class IndexServlet extends HttpServlet {
 
-    public static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
-    public static final String MYSQL_URL = "jdbc:mysql://localhost/webapp?"
-            + "user=root&password=programsicom&useSSL=false";
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         try {
-            MySQL mySQL = new MySQL(MYSQL_DRIVER, MYSQL_URL);
+            MySQL mySQL = new MySQL();
             if (mySQL.isValidUser(req.getParameter("username"), req.getParameter("password"))) {
                 resp.sendRedirect("login");
             } else {

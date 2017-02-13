@@ -4,20 +4,11 @@ package io.muic.ooc;
  * Created by ice on 2/13/17.
  */
 public class User {
-    private Integer id;
     private String username;
     private String password;
     private String email;
     private String firstname;
     private String lastname;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

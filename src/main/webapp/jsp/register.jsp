@@ -11,11 +11,19 @@
     <title>Register</title>
 </head>
 <body>
-    <form action="RegisterServlet" method="post">
+    <form action="register" method="post">
         <h1>Register</h1>
-        <h2>Ice and Sea</h2>
-        <h3>at MUIC 1409</h3>
-        <h4>Yeah~ Yeah~</h4>
+        <p>username: </p><input type="text" name="username">
+        <p>password: </p><input type="password" name="password">
+        <p>First name: </p><input type="text" name="firstname">
+        <p>Last name: </p><input type="text" name="lastname">
+        <p>Email: </p><input type="email" name="email">
+
+        <input type="submit" name="save" value="save">
+    </form>
+
+    <form action="login" method="get">
+        <input type="submit" name="back" value="back">
     </form>
 </body>
 </html>

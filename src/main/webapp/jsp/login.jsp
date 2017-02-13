@@ -13,13 +13,12 @@
 </head>
 <body>
 
-    <form action="register.jsp" method="post">
+    <form action="register" method="get">
 
         <h1>Login.jsp</h1>
         <table class="table">
             <thead>
                 <tr>
-                    <td>ID</td>
                     <td>username</td>
                     <td>First name</td>
                     <td>Last name</td>
@@ -29,8 +28,6 @@
             </thead>
             <c:forEach var="user" items="${allUser}">
                 <tr>
-
-                    <td>${user.id}</td>
                     <td>${user.username}</td>
                     <td>${user.firstname}</td>
                     <td>${user.lastname}</td>
