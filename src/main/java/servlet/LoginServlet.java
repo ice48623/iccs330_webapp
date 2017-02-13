@@ -27,13 +27,6 @@ public class LoginServlet extends HttpServlet {
             + "user=root&password=programsicom&useSSL=false";
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        System.out.println("Enter doPost");
-
-    }
-
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             MySQL mySQL = new MySQL(MYSQL_DRIVER, MYSQL_URL);
@@ -42,12 +35,18 @@ public class LoginServlet extends HttpServlet {
 
             System.out.println(allUser.size());
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        resp.sendRedirect("login.jsp");
         System.out.println("Enter doGet");
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("doPost");
+        resp.sendRedirect("register.jsp");
     }
 
 

@@ -13,7 +13,8 @@
 </head>
 <body>
 
-    <form action="LoginServlet" method="post">
+    <form action="register.jsp" method="post">
+
         <h1>Login.jsp</h1>
         <table class="table">
             <thead>
@@ -46,6 +47,7 @@
             </c:forEach>
         </table>
 
+        <input type="submit">
     </form>
 </body>
 </html>
