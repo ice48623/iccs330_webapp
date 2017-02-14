@@ -12,38 +12,49 @@
     <title>user</title>
 </head>
 <body>
+    <h1>user.jsp</h1>
+    <input type="submit" value="Logout"/>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>username</td>
+                <td>First name</td>
+                <td>Last name</td>
+                <td>E-mail</td>
+                <td></td>
+            </tr>
+        </thead>
+        <c:forEach var="user" items="${allUser}">
+            <tr>
+                <td>${user.username}</td>
+                <td>${user.firstname}</td>
+                <td>${user.lastname}</td>
+                <td>${user.email}</td>
+                <%--<td><a href="#" id="remove"--%>
+                       <%--onclick="document.getElementById('action').value = 'remove';document.getElementById('idEmployee').value = '${employee.id}';--%>
 
-    <form action="register" method="get">
-
-        <h1>user.jsp</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <td>username</td>
-                    <td>First name</td>
-                    <td>Last name</td>
-                    <td>E-mail</td>
-                    <td></td>
-                </tr>
-            </thead>
-            <c:forEach var="user" items="${allUser}">
-                <tr>
-                    <td>${user.username}</td>
-                    <td>${user.firstname}</td>
-                    <td>${user.lastname}</td>
-                    <td>${user.email}</td>
-                    <%--<td><a href="#" id="remove"--%>
-                           <%--onclick="document.getElementById('action').value = 'remove';document.getElementById('idEmployee').value = '${employee.id}';--%>
-
-                                   <%--document.getElementById('employeeForm').submit();">--%>
-                        <%--<span class="glyphicon glyphicon-trash"/>--%>
-                    <%--</a>--%>
-
+                               <%--document.getElementById('employeeForm').submit();">--%>
+                    <%--<span class="glyphicon glyphicon-trash"/>--%>
+                <%--</a>--%>
+                <form action="edit" method="get" >
+                    <td>
+                        <input type="hidden" name="editAction" value="edit"/>
+                        <input type="hidden" name="editUser" value="${user.username}"/>
+                        <input type="submit" value="Edit"/>
                     </td>
-                </tr>
-            </c:forEach>
-        </table>
+                </form>
+                <form action="user" method="post" >
+                    <td>
+                        <input type="hidden" name="deleteAction" value="delete"/>
+                        <input type="hidden" name="deleteUser" value="${user.username}"/>
+                        <input type="submit" value="Delete"/>
+                    </td>
+                </form>
+            </tr>
 
+        </c:forEach>
+    </table>
+    <form action="register" method="get">
         <input type="submit">
     </form>
 </body>

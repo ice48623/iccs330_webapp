@@ -3,7 +3,6 @@ package servlet;
 import io.muic.ooc.MySQL;
 import io.muic.ooc.User;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,13 +24,7 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-//            RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/user.jsp");
-//            rd.include(req, resp);
-            MySQL mySQL = new MySQL();
-            List<User> allUser = mySQL.generateUserInfo();
-            req.setAttribute("allUser", allUser);
-
-            System.out.println(allUser.size());
+            displayUsers(req);
             req.getRequestDispatcher("/user.jsp").forward(req, resp);
 
         } catch (Exception e) {
@@ -44,8 +37,37 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("doPost");
-        resp.sendRedirect("register");
+        if ("delete".equals(req.getParameter("deleteAction"))) {
+            System.out.println("Delete action");
+            System.out.println(req.getParameter("deleteUser"));
+            try {
+                System.out.println("");
+                MySQL mySQL = new MySQL();
+                mySQL.query("DELETE FROM user_account WHERE username = '" + req.getParameter("deleteUser") + "'");
+                displayUsers(req);
+                req.getRequestDispatcher("user.jsp").forward(req, resp);
+            } catch (Exception e) {
+                System.out.println("Error while deleting user from database");
+            }
+
+        }
+//        else if ("edit".equals(req.getParameter("editAction"))) {
+//            System.out.println("Edit action");
+//            System.out.println(req.getParameter("editUser"));
+//            req.setAttribute("editUser", req.getParameter("editUser"));
+//            resp.sendRedirect("edit");
+//        }
+        else {
+            resp.sendRedirect("register");
+        }
+
+
     }
 
+    private void displayUsers(HttpServletRequest req) throws Exception{
+        MySQL mySQL = new MySQL();
+        List<User> allUser = mySQL.generateUserInfo();
+        req.setAttribute("allUser", allUser);
+    }
 
 }

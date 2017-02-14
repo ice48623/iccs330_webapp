@@ -82,21 +82,19 @@ public class MySQL {
             user.setFirstname(rs.getString("firstname"));
             user.setLastname(rs.getString("lastname"));
             allUser.add(user);
+
         }
+        close();
         return allUser;
     }
 
 
-    private ResultSet querySelect(String query) throws Exception{
+    public ResultSet querySelect(String query) throws Exception{
         try {
             Class.forName(jdbcDriverStr);
             connection = DriverManager.getConnection(jdbcURL);
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
-
-//            preparedStatement = connection.prepareStatement("insert into webapp.user_account values (default,?)");
-//            preparedStatement.setString(1, "insert test from java");
-//            preparedStatement.executeUpdate();
         } catch (Exception e) {
         }
         return resultSet;
@@ -112,12 +110,35 @@ public class MySQL {
             stmt = connection.createStatement();
             String create_sql = "INSERT INTO user_account (username, password, email, firstname, lastname) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "', '" + user.getEmail() + "', '"+ user.getFirstname() +"', '" + user.getLastname() +"')";
             stmt.execute(create_sql);
-            stmt.close();
+
 
         } catch (Exception e) {
             System.out.println("Unable to insert new user");
             e.printStackTrace();
+        } finally {
+            close();
         }
+    }
+
+    public void query(String query) {
+        try {
+            java.sql.Statement stmt;
+            Class.forName(jdbcDriverStr);
+            connection = DriverManager.getConnection(jdbcURL);
+
+            // Initialized stmt with connection
+            stmt = connection.createStatement();
+
+            // Delete user from database
+            String query_stmt = query;
+            stmt.execute(query_stmt);
+            System.out.println("Query user successfully");
+        } catch (Exception e) {
+            System.out.println("Unable to delete user");
+        } finally {
+            close();
+        }
+
     }
 
     private void close() {
