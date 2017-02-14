@@ -22,7 +22,7 @@
         <input type="submit" name="save" value="save">
     </form>
 
-    <form action="login" method="get">
+    <form action="user" method="get">
         <input type="submit" name="back" value="back">
     </form>
 </body>
