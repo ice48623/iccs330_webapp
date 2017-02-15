@@ -20,25 +20,20 @@ public class RegisterServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Enter register doPost");
-//        req.getRequestDispatcher("register.jsp").forward(req, resp);
 
         try {
             User user = new User();
             user.setUsername(req.getParameter("username"));
-            System.out.println(user.getUsername());
             String pass = req.getParameter("password");
-            System.out.println(pass);
             user.setPassword(pass);
             user.setFirstname(req.getParameter("firstname"));
             user.setLastname(req.getParameter("lastname"));
             user.setEmail(req.getParameter("email"));
 
-
-            System.out.println(user.getPassword());
             MySQL mySQL = new MySQL();
             mySQL.insertToDB(user);
             System.out.println("Insert new user successfully");
-            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            resp.sendRedirect("user");
         } catch (Exception e) {
             System.out.println("Unable to insert new user");
             e.printStackTrace();

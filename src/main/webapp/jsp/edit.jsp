@@ -11,14 +11,14 @@
     <title>Edit</title>
 </head>
 <body>
-
+    <form action="edit" method="post">
         <h1>Edit</h1>
-        <p>username: </p><input type="text" name="username" value="${username}" disabled="disabled">
+        <p>username: </p><input type="text" name="username" value="${username}" readonly>
         <%--<p>password: </p><input type="password" name="password">--%>
         <p>First name: </p><input type="text" name="firstname" value="${firstname}">
         <p>Last name: </p><input type="text" name="lastname" value="${lastname}">
         <p>Email: </p><input type="email" name="email" value="${email}">
-    <form action="edit" method="post">
+
         <input type="submit" name="save" value="save">
     </form>
 

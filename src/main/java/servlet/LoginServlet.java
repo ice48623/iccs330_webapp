@@ -25,6 +25,7 @@ public class LoginServlet extends HttpServlet {
         try {
             MySQL mySQL = new MySQL();
             if (mySQL.isValidUser(req.getParameter("username"), req.getParameter("password"))) {
+                req.getSession().setAttribute("cookie", req.getParameter("username"));
                 resp.sendRedirect("user");
             } else {
                 System.out.println("not valid user or password");
@@ -39,10 +40,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.getRequestDispatcher("webapp/jsp/user.jsp");
         req.getRequestDispatcher("login.jsp").forward(req, resp);
-
-
     }
 
 

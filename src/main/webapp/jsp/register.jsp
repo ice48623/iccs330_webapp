@@ -22,8 +22,8 @@
         <input type="submit" name="save" value="save">
     </form>
 
-    <form action="user" method="get">
-        <input type="submit" name="back" value="back">
-    </form>
+    <%--<form action="user" method="get">--%>
+        <%--<input type="submit" name="back" value="back">--%>
+    <%--</form>--%>
 </body>
 </html>

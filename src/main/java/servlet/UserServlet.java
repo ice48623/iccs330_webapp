@@ -30,13 +30,13 @@ public class UserServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Enter doGet");
+        System.out.println("Enter user doGet");
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("doPost");
+        System.out.println("Enter user doPost");
         if ("delete".equals(req.getParameter("deleteAction"))) {
             System.out.println("Delete action");
             System.out.println(req.getParameter("deleteUser"));
@@ -50,14 +50,7 @@ public class UserServlet extends HttpServlet {
                 System.out.println("Error while deleting user from database");
             }
 
-        }
-//        else if ("edit".equals(req.getParameter("editAction"))) {
-//            System.out.println("Edit action");
-//            System.out.println(req.getParameter("editUser"));
-//            req.setAttribute("editUser", req.getParameter("editUser"));
-//            resp.sendRedirect("edit");
-//        }
-        else {
+        } else {
             resp.sendRedirect("register");
         }
 

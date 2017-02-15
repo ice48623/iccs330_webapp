@@ -141,7 +141,7 @@ public class MySQL {
 
     }
 
-    private void close() {
+    public void close() {
         try {
             if (resultSet != null) {
                 resultSet.close();

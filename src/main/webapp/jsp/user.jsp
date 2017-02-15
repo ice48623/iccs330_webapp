@@ -13,7 +13,9 @@
 </head>
 <body>
     <h1>user.jsp</h1>
-    <input type="submit" value="Logout"/>
+    <form action="logout" method="get">
+        <input type="submit" value="Logout"/>
+    </form>
     <table class="table">
         <thead>
             <tr>
@@ -30,12 +32,6 @@
                 <td>${user.firstname}</td>
                 <td>${user.lastname}</td>
                 <td>${user.email}</td>
-                <%--<td><a href="#" id="remove"--%>
-                       <%--onclick="document.getElementById('action').value = 'remove';document.getElementById('idEmployee').value = '${employee.id}';--%>
-
-                               <%--document.getElementById('employeeForm').submit();">--%>
-                    <%--<span class="glyphicon glyphicon-trash"/>--%>
-                <%--</a>--%>
                 <form action="edit" method="get" >
                     <td>
                         <input type="hidden" name="editAction" value="edit"/>
@@ -55,7 +51,7 @@
         </c:forEach>
     </table>
     <form action="register" method="get">
-        <input type="submit">
+        <input type="submit" value="add user">
     </form>
 </body>
 </html>

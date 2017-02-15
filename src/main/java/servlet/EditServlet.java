@@ -47,7 +47,7 @@ public class EditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Enter edit doPost");
         MySQL mySQL = new MySQL();
-        System.out.println(req.getParameter("email"));
+        System.out.println(req.getParameter("username"));
         mySQL.query("UPDATE user_account SET email = '" + req.getParameter("email") + "', firstname = '" + req.getParameter("firstname") + "', lastname = '" + req.getParameter("lastname") + "' WHERE username = '" + req.getParameter("username") + "'");
         resp.sendRedirect("user");
     }
