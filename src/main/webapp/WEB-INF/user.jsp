@@ -39,11 +39,11 @@
                         <input type="submit" value="Edit"/>
                     </td>
                 </form>
-                <form action="user" method="post" >
+                <form id="deleteAction" action="user" method="post" onsubmit="return false">
                     <td>
                         <input type="hidden" name="deleteAction" value="delete"/>
                         <input type="hidden" name="deleteUser" value="${user.username}"/>
-                        <input type="submit" value="Delete"/>
+                        <input type="submit" value="Delete" onclick="confirmDelete()"/>
                     </td>
                 </form>
             </tr>
@@ -53,5 +53,15 @@
     <form action="register" method="get">
         <input type="submit" value="add user">
     </form>
+
+    <script>
+        var frm = document.getElementById('deleteAction');
+        function confirmDelete() {
+            var c = confirm("Click Ok to confirm delete!");
+            if (c == true) {
+                frm.submit()
+            }
+        }
+    </script>
 </body>
 </html>

@@ -45,7 +45,7 @@ public class UserServlet extends HttpServlet {
                 MySQL mySQL = new MySQL();
                 mySQL.query("DELETE FROM user_account WHERE username = '" + req.getParameter("deleteUser") + "'");
                 displayUsers(req);
-                req.getRequestDispatcher("user.jsp").forward(req, resp);
+                req.getRequestDispatcher("WEB-INF/user.jsp").forward(req, resp);
             } catch (Exception e) {
                 System.out.println("Error while deleting user from database");
             }
