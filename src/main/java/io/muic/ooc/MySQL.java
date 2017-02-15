@@ -63,7 +63,7 @@ public class MySQL {
 
         rs.close();
 
-        if (passwd.equals(password)) {
+        if (passwd.equals(hashed)) {
             return true;
         } else {
             return false;

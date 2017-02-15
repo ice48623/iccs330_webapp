@@ -6,18 +6,18 @@ import java.util.Random;
  */
 public class testHash {
     public static void main(String args[]) throws Exception{
-        String name = "name";
-        String passwd = "password";
+        String name = "admin";
+        String passwd = "pass";
         String hash1 = genHash(name, passwd);
 
-        String name2 = "name";
-        String passwd2 = "password";
-        String hash2 = genHash(name2, passwd2);
+//        String name2 = "name";
+//        String passwd2 = "password";
+//        String hash2 = genHash(name2, passwd2);
 
         System.out.println(hash1);
-        System.out.println(hash2);
-        System.out.println(hash1.equals(hash2));
-        System.out.println(hash1.length());
+//        System.out.println(hash2);
+//        System.out.println(hash1.equals(hash2));
+//        System.out.println(hash1.length());
     }
 
     public static String genHash(String name, String passwd) throws Exception{

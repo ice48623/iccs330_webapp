@@ -4,7 +4,6 @@ import io.muic.ooc.Hash;
 import io.muic.ooc.MySQL;
 import io.muic.ooc.User;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +23,7 @@ public class RegisterServlet extends HttpServlet{
         try {
             User user = new User();
             user.setUsername(req.getParameter("username"));
-            String pass = req.getParameter("password");
-            user.setPassword(pass);
+            user.setPassword(Hash.genHash(user.getUsername(), req.getParameter("password")));
             user.setFirstname(req.getParameter("firstname"));
             user.setLastname(req.getParameter("lastname"));
             user.setEmail(req.getParameter("email"));
