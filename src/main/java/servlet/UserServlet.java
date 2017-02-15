@@ -25,7 +25,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             displayUsers(req);
-            req.getRequestDispatcher("/user.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/user.jsp").forward(req, resp);
 
         } catch (Exception e) {
             e.printStackTrace();

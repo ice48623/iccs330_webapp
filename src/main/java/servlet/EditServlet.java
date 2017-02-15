@@ -40,7 +40,7 @@ public class EditServlet extends HttpServlet {
         req.setAttribute("firstname", firstname);
         req.setAttribute("lastname", lastname);
         req.setAttribute("email", email);
-        req.getRequestDispatcher("/edit.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/edit.jsp").forward(req, resp);
     }
 
     @Override
