@@ -19,28 +19,39 @@ public class EditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Enter edit doGet");
         System.out.println("receive: " + req.getParameter("editUser"));
+
+        // Checking whether current user is still valid (username exists in DB)
         MySQL mySQL = new MySQL();
-        String username = req.getParameter("editUser");
-        String firstname = "";
-        String lastname = "";
-        String email = "";
-        try {
-            ResultSet rs = mySQL.querySelect("SELECT * FROM user_account WHERE username = '" + username + "'");
-            while (rs.next()) {
-                firstname = rs.getString("firstname");
-                lastname = rs.getString("lastname");
-                email = rs.getString("email");
+        Boolean authenticate = mySQL.isAuthenticate((String) req.getSession().getAttribute("cookie"));
+        if (!authenticate) {
+            //revoke access, redirect to login page
+            req.getSession().invalidate();
+            resp.sendRedirect("login");
+        } else {
+//            MySQL mySQL = new MySQL();
+            String username = req.getParameter("editUser");
+            String firstname = "";
+            String lastname = "";
+            String email = "";
+            try {
+                ResultSet rs = mySQL.querySelect("SELECT * FROM user_account WHERE username = '" + username + "'");
+                while (rs.next()) {
+                    firstname = rs.getString("firstname");
+                    lastname = rs.getString("lastname");
+                    email = rs.getString("email");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error while query from database");
             }
 
-        } catch (Exception e) {
-            System.out.println("Error while query from database");
+            req.setAttribute("username", username);
+            req.setAttribute("firstname", firstname);
+            req.setAttribute("lastname", lastname);
+            req.setAttribute("email", email);
+            req.getRequestDispatcher("WEB-INF/edit.jsp").forward(req, resp);
         }
 
-        req.setAttribute("username", username);
-        req.setAttribute("firstname", firstname);
-        req.setAttribute("lastname", lastname);
-        req.setAttribute("email", email);
-        req.getRequestDispatcher("WEB-INF/edit.jsp").forward(req, resp);
     }
 
     @Override

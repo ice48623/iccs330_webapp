@@ -24,9 +24,19 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            displayUsers(req);
-            req.getRequestDispatcher("WEB-INF/user.jsp").forward(req, resp);
-
+            // Checking whether current user is still valid (username exists in DB)
+            MySQL mySQL = new MySQL();
+            String currentUser = (String) req.getSession().getAttribute("cookie");
+            Boolean authenticate = mySQL.isAuthenticate(currentUser);
+            if (!authenticate) {
+                //revoke access, redirect to login page
+                req.getSession().invalidate();
+                resp.sendRedirect("login");
+            } else {
+                req.setAttribute("currentUser", currentUser);
+                displayUsers(req);
+                req.getRequestDispatcher("WEB-INF/user.jsp").forward(req, resp);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,12 +59,9 @@ public class UserServlet extends HttpServlet {
             } catch (Exception e) {
                 System.out.println("Error while deleting user from database");
             }
-
         } else {
             resp.sendRedirect("register");
         }
-
-
     }
 
     private void displayUsers(HttpServletRequest req) throws Exception{

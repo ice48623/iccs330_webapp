@@ -1,0 +1,9 @@
+.welcome {
+    float: left;
+}
+
+.logout {
+    float: left;
+    margin-top: 22px;
+    margin-left: 10px;
+}

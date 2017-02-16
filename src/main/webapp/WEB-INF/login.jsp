@@ -25,10 +25,10 @@
         <form class="form-signin" action="login" method="post">
             <h2 class="form-signin-heading">Please sign in</h2>
             <div class="input">
-                <p>username:</p>
-                <input class="form-control" type="text" name="username">
-                <p>password:</p>
-                <input class="form-control" type="password" name="password">
+                <%--<p>username:</p>--%>
+                <input class="login-field form-control" type="text" name="username" placeholder="username">
+                <%--<p>password:</p>--%>
+                <input class="login-field form-control" type="password" name="password" placeholder="password">
             </div>
             <input class="btn btn-lg btn-primary btn-block" type="submit">
         </form>

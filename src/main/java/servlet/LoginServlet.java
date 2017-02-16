@@ -15,9 +15,6 @@ import javax.servlet.http.HttpServletResponse;
         name = "LoginServlet",
         urlPatterns = {"/login"}
 )
-
-
-
 public class LoginServlet extends HttpServlet {
 
     @Override

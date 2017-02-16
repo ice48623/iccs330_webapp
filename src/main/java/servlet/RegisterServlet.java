@@ -41,6 +41,16 @@ public class RegisterServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Enter register doGet");
-        req.getRequestDispatcher("WEB-INF/register.jsp").forward(req, resp);
+        // Checking whether current user is still valid (username exists in DB)
+        MySQL mySQL = new MySQL();
+        Boolean authenticate = mySQL.isAuthenticate((String) req.getSession().getAttribute("cookie"));
+        if (!authenticate) {
+            //revoke access, redirect to login page
+            req.getSession().invalidate();
+            resp.sendRedirect("login");
+        } else {
+            req.getRequestDispatcher("WEB-INF/register.jsp").forward(req, resp);
+        }
+
     }
 }

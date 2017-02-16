@@ -68,6 +68,23 @@ public class MySQL {
 
     }
 
+    public Boolean isAuthenticate(String username) {
+        String DBUser = "";
+        try {
+            MySQL mySQL = new MySQL();
+            ResultSet rs = mySQL.querySelect("SELECT * from user_account WHERE username= '" + username + "'");
+
+            while (rs.next()) {
+                DBUser = rs.getString("username");
+            }
+        } catch (Exception e) {
+            System.out.println("Error in isAuthenticate");
+        } finally {
+            close();
+        }
+        return StringUtils.equals(DBUser, username);
+    }
+
     public List<User> generateUserInfo() throws Exception {
         ResultSet rs = querySelect("select * from webapp.user_account");
         List<User> allUser = new ArrayList<>();
