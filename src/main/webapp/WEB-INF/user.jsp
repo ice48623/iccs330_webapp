@@ -40,11 +40,11 @@
                         <input type="submit" value="Edit"/>
                     </td>
                 </form>
-                <form id="deleteAction" action="user" method="post" onsubmit="return false">
+                <form id="deleteForm" action="user" method="post" onsubmit="confirmDelete()">
                     <td>
                         <input type="hidden" name="deleteAction" value="delete"/>
                         <input type="hidden" name="deleteUser" value="${user.username}"/>
-                        <input type="submit" value="Delete" onclick="confirmDelete()"/>
+                        <input type="submit" value="Delete"/>
                     </td>
                 </form>
             </tr>
@@ -56,8 +56,10 @@
     </form>
 
     <script>
-        var frm = document.getElementById('deleteAction');
+        var frm = document.getElementById('deleteForm');
+
         function confirmDelete() {
+            console.log(this)
             var c = confirm("Click Ok to confirm delete!");
             if (c == true) {
                 frm.submit()
