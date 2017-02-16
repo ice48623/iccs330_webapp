@@ -32,6 +32,7 @@
                 <td>${user.firstname}</td>
                 <td>${user.lastname}</td>
                 <td>${user.email}</td>
+
                 <form action="edit" method="get" >
                     <td>
                         <input type="hidden" name="editAction" value="edit"/>

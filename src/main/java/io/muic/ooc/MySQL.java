@@ -1,5 +1,7 @@
 package io.muic.ooc;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,12 +64,7 @@ public class MySQL {
         }
 
         rs.close();
-
-        if (passwd.equals(hashed)) {
-            return true;
-        } else {
-            return false;
-        }
+        return StringUtils.equals(passwd, hashed);
 
     }
 

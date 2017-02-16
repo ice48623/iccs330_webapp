@@ -39,7 +39,7 @@ public class UserServlet extends HttpServlet {
         System.out.println("Enter user doPost");
         if ("delete".equals(req.getParameter("deleteAction"))) {
             System.out.println("Delete action");
-            System.out.println(req.getParameter("deleteUser"));
+            System.out.println("Deleting user = " + req.getParameter("deleteUser"));
             try {
                 System.out.println("");
                 MySQL mySQL = new MySQL();

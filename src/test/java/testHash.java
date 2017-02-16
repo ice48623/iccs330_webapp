@@ -1,3 +1,5 @@
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.security.MessageDigest;
 import java.util.Random;
 
@@ -10,10 +12,10 @@ public class testHash {
         String passwd = "pass";
         String hash1 = genHash(name, passwd);
 
-//        String name2 = "name";
-//        String passwd2 = "password";
+//        String name2 = "admin";
+//        String passwd2 = "asd";
 //        String hash2 = genHash(name2, passwd2);
-
+//
         System.out.println(hash1);
 //        System.out.println(hash2);
 //        System.out.println(hash1.equals(hash2));
@@ -21,23 +23,9 @@ public class testHash {
     }
 
     public static String genHash(String name, String passwd) throws Exception{
-        String salts = "12,12,12";
 
-        String salttmp[] = salts.split(",");
-        byte salt[] = new byte[salttmp.length];
-
-        for (int i = 0; i < salt.length; i++) {
-            salt[i] = Byte.parseByte(salttmp[i]);
-        }
-        MessageDigest m = MessageDigest.getInstance("SHA-256");
-        m.update(salt);
-        m.update(name.getBytes("UTF8"));
-        byte s[] = m.digest();
-        String result = "";
-        for (int i = 0; i < s.length; i++) {
-            result += Integer.toHexString((0x000000ff & s[i]) | 0xffffff00).substring(6);
-        }
-//        System.out.println(result);
-        return result;
+        String salt = "salty salt";
+        String hashed = DigestUtils.sha256Hex(name + passwd);
+        return DigestUtils.sha256Hex(hashed + salt);
     }
 }

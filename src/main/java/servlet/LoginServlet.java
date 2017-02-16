@@ -29,6 +29,7 @@ public class LoginServlet extends HttpServlet {
                 resp.sendRedirect("user");
             } else {
                 System.out.println("not valid user or password");
+                doGet(req, resp);
             }
 
         } catch (Exception e) {
