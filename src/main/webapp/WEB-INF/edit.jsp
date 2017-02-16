@@ -8,11 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Edit</title>
+    <title>Editing</title>
 </head>
 <body>
     <form action="edit" method="post">
-        <h1>Edit</h1>
+        <h1>Editing... ${username}</h1>
         <p>username: </p><input type="text" name="username" value="${username}" readonly>
         <%--<p>password: </p><input type="password" name="password">--%>
         <p>First name: </p><input type="text" name="firstname" value="${firstname}">
