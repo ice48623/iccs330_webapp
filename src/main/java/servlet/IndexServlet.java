@@ -32,7 +32,6 @@ public class IndexServlet extends HttpServlet {
             req.setAttribute("cookie", cookieUser);
             resp.sendRedirect("login");
         }
-
     }
 
     private Boolean isValidUser(String cookieUser) {

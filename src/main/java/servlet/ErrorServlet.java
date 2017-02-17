@@ -29,7 +29,7 @@ public class ErrorServlet implements Filter{
             chain.doFilter(req, res);
         }
         else {
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("/");
         }
     }
 
