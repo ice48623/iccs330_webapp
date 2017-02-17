@@ -29,10 +29,8 @@ public class ErrorServlet implements Filter{
             chain.doFilter(req, res);
         }
         else {
-//            response.sendRedirect(request.getContextPath() + "/index.jsp");
             response.sendRedirect("/index.jsp");
         }
-
     }
 
     @Override

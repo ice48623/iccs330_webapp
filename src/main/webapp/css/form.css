@@ -44,3 +44,7 @@ body {
 .login-field {
     margin: 10px 0;
 }
+
+.regis-btn {
+    float: left;
+}
