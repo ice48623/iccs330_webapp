@@ -2,6 +2,7 @@ package io.muic.ooc;
 
 import org.apache.commons.lang.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -114,24 +115,17 @@ public class MySQL {
         return resultSet;
     }
 
-    public void insertToDB(User user) {
+    public void insertToDB(User user, HttpServletRequest req) throws Exception{
+        java.sql.Statement stmt;
+        Class.forName(jdbcDriverStr);
+        connection = DriverManager.getConnection(jdbcURL);
 
-        try {
-            java.sql.Statement stmt;
-            Class.forName(jdbcDriverStr);
-            connection = DriverManager.getConnection(jdbcURL);
+        stmt = connection.createStatement();
+        String create_sql = "INSERT INTO user_account (username, password, email, firstname, lastname) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "', '" + user.getEmail() + "', '"+ user.getFirstname() +"', '" + user.getLastname() +"')";
+        stmt.execute(create_sql);
 
-            stmt = connection.createStatement();
-            String create_sql = "INSERT INTO user_account (username, password, email, firstname, lastname) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "', '" + user.getEmail() + "', '"+ user.getFirstname() +"', '" + user.getLastname() +"')";
-            stmt.execute(create_sql);
+        close();
 
-
-        } catch (Exception e) {
-            System.out.println("Unable to insert new user");
-            e.printStackTrace();
-        } finally {
-            close();
-        }
     }
 
     public void query(String query) {

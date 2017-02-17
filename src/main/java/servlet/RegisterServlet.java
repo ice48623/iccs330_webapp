@@ -29,12 +29,12 @@ public class RegisterServlet extends HttpServlet{
             user.setEmail(req.getParameter("email"));
 
             MySQL mySQL = new MySQL();
-            mySQL.insertToDB(user);
-            System.out.println("Insert new user successfully");
+            mySQL.insertToDB(user, req);
             resp.sendRedirect("user");
         } catch (Exception e) {
             System.out.println("Unable to insert new user");
-            e.printStackTrace();
+            req.setAttribute("duplicate", "duplicated user");
+            doGet(req, resp);
         }
     }
 
